@@ -1,0 +1,39 @@
+<div class="row spaceTop">
+  <div class="col-md-3">
+    <div class="card" *ngIf="categories">
+      <div class="card-header bg-primary text-white">
+        Catégories
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item clickable" [ngClass]="currentCategorie==c?'bg-success text-white':''" (click)="onSelectCategory(c)" *ngFor="let c of categories._embedded.categories" title="{{c.description}}">
+          {{c.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="row">
+
+    </div>
+    <div *ngIf="articles">
+      <form class="form-inline" #f="ngForm" (ngSubmit)="onSearchArticles(f.value)">
+        <div class="form-group">
+          <input type="text" class="form-control form-control-sm" ngModel name="motCle" placeholder="Recherche">
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm" style="margin-right: 10px;margin-left: 10px;">Chercher</button>
+        <a class="btn btn-success btn-sm" *ngIf="isLoggedIn" routerLink="/new-article">Ajouter un article</a>
+      </form>
+
+    <div class="card spaceArticle" *ngFor="let art of articles._embedded.articles">
+      <div class="card-body clickable" (click)="onShowArticle(art.id)" >
+        <h5 class="card-title">{{art.title}}</h5>
+        <p class="card-text" *ngIf="art.description.length>115">{{art.description.substring(0, 100)+'...'}}
+          <button type="button" class="btn btn-link" *ngIf="art.description.length>115">Lire</button>
+        </p>
+        <p class="card-text" *ngIf="art.description.length<115">{{art.description}}</p>
+        <p class="toright"><small> {{art.dateAdd +', '+art.user}}</small></p>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

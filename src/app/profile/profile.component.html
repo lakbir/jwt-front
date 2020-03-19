@@ -1,0 +1,11 @@
+<div class="container" *ngIf="currentUser">
+  <div class="avatar-flip">
+    <img src="assets/images/{{currentUser.username}}.png" height="150" width="150">
+    <img src="assets/images/{{currentUser.username}}.png" height="150" width="150">
+  </div>
+  <h2>{{ currentUser.lastName+' '+currentUser.firstName | uppercase}}</h2>
+  <h4>{{ currentUser.email }}</h4>
+  <small *ngFor="let role of currentUser.roles" class="badge badge-info" style="margin-left: 5px;">
+    {{ role.substring(5) }}
+  </small>
+</div>

@@ -1,0 +1,8 @@
+<div class="card spaceArticle" *ngIf="currentArticle">
+  <div class="card-body clickable">
+    <h5 class="card-title">{{currentArticle.title}}</h5>
+    <p class="card-text">{{currentArticle.description}}</p>
+    <button class="btn btn-success btn-sm" routerLink="/home">Quitter</button>
+    <p class="toright"><small> {{currentArticle.dateAdd +', '+currentArticle.user}}</small></p>
+  </div>
+</div>

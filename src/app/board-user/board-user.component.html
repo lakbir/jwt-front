@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="card" *ngIf="mesArticles">
+    <div class="card-header bg-success text-white">
+      Mes Articles
+    </div>
+    <ul class="list-group ">
+      <li class="list-group-item clickable" *ngFor="let art of mesArticles._embedded.articles">
+        <p class="font-weight-bold">{{art.title}}</p> - <small>{{art.description}}</small>
+        <span class="badge badge-primary toright">{{art.dateAdd}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

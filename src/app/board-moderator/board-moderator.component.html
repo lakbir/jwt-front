@@ -1,0 +1,39 @@
+<div class="container spaceTop">
+  <div class="card" *ngIf="authorize">
+    <div class="card-header bg-primary text-white">
+      Administrateurs
+    </div>
+    <div class="card-body">
+
+      <table class="table" *ngIf="admins">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Email</th>
+          <th scope="col">Username</th>
+          <th scope="col">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let ad of admins">
+          <th scope="row">{{ad.id}}</th>
+          <td>{{ad.lastName}}</td>
+          <td>{{ad.firstName}}</td>
+          <td>{{ad.email}}</td>
+          <td>{{ad.username}}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="onDeleteAdmin(ad.id)">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <div class="card bg-danger text-white" *ngIf="!authorize">
+    <div class="card-body">vous n'êtes pas autorisé à accéder à cette page</div>
+  </div>
+</div>

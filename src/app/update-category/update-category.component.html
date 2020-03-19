@@ -1,0 +1,43 @@
+<div class="container spaceTop">
+
+  <div class="card spaceTop" *ngIf="authorize && currentCategory">
+    <div class="card-header">Modifier Catégorie : {{currentCategory.name}}</div>
+    <div class="card-body" *ngIf="modeAdded == 0">
+      <form #f="ngForm" (ngSubmit)="onUpdateCategory()">
+        <div class="form-group">
+          <label for="name">Titre:</label>
+          <input type="text" class="form-control" placeholder="Titre Categorie" id="name" ngModel name="name" [(ngModel)]="currentCategory.name">
+        </div>
+        <div class="form-group">
+          <label for="description">Description :</label>
+          <textarea class="form-control" rows="5" id="description" ngModel [(ngModel)]="currentCategory.description" name="description" placeholder="Description catégorie"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-sm toright">Modifier</button>
+      </form>
+    </div>
+    <div class="card-body" *ngIf="modeAdded == 1 && currentCategory">
+
+      <div class="card bg-success text-white">
+        <div class="card-body">Catégorie modifiée avec succès</div>
+      </div>
+
+      <dl class="row">
+        <dt class="col-sm-3">Catégorie</dt>
+        <dd class="col-sm-9">{{currentCategory.name}}</dd>
+
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">
+          <p>{{currentCategory.description}}</p>
+        </dd>
+      </dl>
+      <button routerLink="/admin" class="btn btn-success btn-sm toright">Retour</button>
+
+    </div>
+
+  </div>
+
+  <div class="card bg-danger text-white" *ngIf="!authorize">
+    <div class="card-body">Vous n'êtes pas autorisé à accéder à cette page</div>
+  </div>
+</div>
